@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public Transform circles;
 
+    public GameObject environment;
 
     public AudioSource gameComplate, gameFail;
 
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
         currentLevel = PlayerPrefs.GetInt("C_Level", 1);
 
         GameScreen.SetActive(false);
+        environment.SetActive(false);
         LevelCompleteScreen.SetActive(true);
         levelText.text = "Level " + currentLevel;
 
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
 
         FindObjectOfType<BackgroundManager>().RandomBackground();
         GameScreen.SetActive(true);
+        environment.SetActive(true);
         LevelCompleteScreen.SetActive(false);
         circleNo = 0;
         foreach (Transform child in circles.transform)
@@ -118,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         gameFail.Play();
         GameScreen.SetActive(false);
+        environment.SetActive(false);
         FailScreen.SetActive(true);
 
     }
@@ -132,6 +136,7 @@ public class GameManager : MonoBehaviour
     {
 
         MainScreen.SetActive(false);
+        environment.SetActive(true);
         GameScreen.SetActive(true);
 
         foreach (Transform child in circles.transform)
@@ -153,6 +158,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         GameScreen.SetActive(true);
+        environment.SetActive(true);
         FailScreen.SetActive(false);
 
         foreach (Transform child in circles.transform)
